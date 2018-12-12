@@ -229,12 +229,16 @@ public class AdventureGame extends JavaEngine
 		client.connect(serverAddress, serverPort);
 		client.login(username);
 		map = client.getTileMapFromServer();
+		Game.g.map = map;
 		
 		Player man = client.getPlayerFromServer();
+		Game.g.player = man;
 
-		Logger.info(className + ".iniGameData(): got man from server with position ["+man.getTilePoint()+"]");
+		Logger.info(className + ".initGameData(): got man from server with position ["+man.getTilePoint()+"]");
 		
 		view = new GameView(0,0,screen,map);
+		Game.g.view = view;
+		
 		screen.addManBar(new StaminaBar(screen,man, Color.gray, Color.white, Color.yellow, Color.white));
 		screen.addManBar(new HealthBar(screen,man, Color.gray, Color.white, Color.red, Color.white));
 		//screen.addManBar(new ManaBar(screen,man, Color.gray, Color.white, Color.blue, Color.white));
@@ -264,9 +268,6 @@ public class AdventureGame extends JavaEngine
 		client.requestWorldUpdate();
 		client.requestAllEntities();
 		
-		Game.g.player = man;
-		Game.g.view = view;
-		Game.g.map = map;
 		
 		Game.g.addRenderable(view);
 		

@@ -17,10 +17,10 @@ public class GameView implements Updateable, Renderable
 	
 	public GameView(int x, int y, GameScreen screen, TileMap map)
 	{
-		this.x = x;
-		this.x = y;
 		this.screen = screen;
 		this.map = map;
+		this.x = getWantedX();
+		this.y = getWantedY();
 	}
 	
 	public Point translateRealPosToViewRealPos(Point realPos)
@@ -30,8 +30,12 @@ public class GameView implements Updateable, Renderable
 	
 	int speedFactor = 1;
 	Vector2D speed = new Vector2D(0, 0);
-	int diffThreshold = 50;
+	final int diffLowerThreshold = 50;
+	final int MAX_SPEED = 500;
 	double tenE3 = Math.pow(10, 3);
+	
+	private double deltax = 0.0;
+	private double deltay = 0.0;
 	
 	public void update(double period)
 	{
@@ -42,31 +46,55 @@ public class GameView implements Updateable, Renderable
 			speed.x = 0;
 			speed.y = 0;
 			
-			int wantedx = Game.g.player.getRealPoint().x - Math.round(screen.width / 2);
-			wantedx = (wantedx < 0) ? 0 : wantedx;
-			wantedx = (wantedx + screen.width) > map.mapW*map.tileWidth ? map.mapW*map.tileWidth - screen.width : wantedx;
-			
-			int wantedy = Game.g.player.getRealPoint().y - Math.round(screen.height / 2);
-			wantedy = (wantedy < 0) ? 0 : wantedy;
-			wantedy = (wantedy + screen.height) > map.mapH*map.tileHeight ? map.mapH*map.tileHeight - screen.height : wantedy;
+			int wantedx = getWantedX();
+			int wantedy = getWantedY();
 			
 			int diffx = wantedx - x;
 			int diffy = wantedy - y;
 			
-			if (diffx > diffThreshold || diffx < -diffThreshold)
+			if (Math.abs(diffx) > diffLowerThreshold)
 				speed.x = diffx;
 			
-			if (diffy > diffThreshold || diffy < -diffThreshold)
+			if (Math.abs(diffy) > diffLowerThreshold)
 				speed.y = diffy;
 			
-			x += speed.x * speedFactor * sec;
-			y += speed.y * speedFactor * sec;
+			if (Math.abs(speed.x) > MAX_SPEED)
+				speed.x = MAX_SPEED * Math.signum(speed.x);
+			
+			if (Math.abs(speed.y) > MAX_SPEED)
+				speed.y = MAX_SPEED * Math.signum(speed.y);
+			
+			deltax = speed.x * speedFactor * sec;
+			deltay = speed.y * speedFactor * sec;
+			
+//			if (deltax > 0 && ())
+			
+			x += deltax;
+			y += deltay;
 				
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	private int getWantedX()
+	{
+		int wantedx = Game.g.player.getRealPoint().x - Math.round(screen.width / 2);
+		wantedx = (wantedx < 0) ? 0 : wantedx;
+		wantedx = (wantedx + screen.width) > map.mapW*map.tileWidth ? map.mapW*map.tileWidth - screen.width : wantedx;
+		
+		return wantedx;
+	}
+	
+	private int getWantedY()
+	{
+		int wantedy = Game.g.player.getRealPoint().y - Math.round(screen.height / 2);
+		wantedy = (wantedy < 0) ? 0 : wantedy;
+		wantedy = (wantedy + screen.height) > map.mapH*map.tileHeight ? map.mapH*map.tileHeight - screen.height : wantedy;
+
+		return wantedy;
 	}
 	
 	public void render(Graphics g)
