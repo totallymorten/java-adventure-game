@@ -4,10 +4,9 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.List;
 
-import tools.Logger;
-
 import adventure.game.entities.Actor;
 import adventure.game.entities.Updateable;
+import tools.Logger;
 
 public class AStarService implements Updateable
 {

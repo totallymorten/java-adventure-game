@@ -6,13 +6,13 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.List;
 
-import tools.ImageTool;
-import tools.Logger;
 import adventure.comm.CommunicationObj;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Entity;
 import adventure.game.entities.Player;
 import adventure.types.Tiles;
+import tools.ImageTool;
+import tools.Logger;
 
 public class TileMap extends CommunicationObj
 {

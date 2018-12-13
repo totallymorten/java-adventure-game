@@ -4,10 +4,10 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import tools.Logger;
 import adventure.comm.CommandObj;
 import adventure.game.Game;
 import adventure.game.entities.Player;
+import tools.Logger;
 
 public class ServerReaderThread extends Thread
 {

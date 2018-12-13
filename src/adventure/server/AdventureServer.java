@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import tools.Logger;
 import adventure.comm.ActorStats;
 import adventure.comm.CommunicationObj;
 import adventure.comm.GameStats;
@@ -24,6 +23,7 @@ import adventure.types.ActorStat;
 import adventure.types.Direction;
 import adventure.types.Sounds;
 import adventure.types.Tiles;
+import tools.Logger;
 
 
 public class AdventureServer

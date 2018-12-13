@@ -5,9 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Locale;
 
-import adventure.engine.AdventureGame;
 import adventure.game.screen.ManBar;
 import adventure.types.RenderPriority;
 

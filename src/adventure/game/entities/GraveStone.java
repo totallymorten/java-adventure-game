@@ -1,7 +1,5 @@
 package adventure.game.entities;
 
-import java.awt.Image;
-
 import adventure.game.entities.ai.GraveStoneAI;
 import adventure.properties.AdventureProperties;
 

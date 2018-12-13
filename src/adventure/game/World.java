@@ -1,12 +1,11 @@
 package adventure.game;
 
-import tools.Logger;
-import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Updateable;
 import adventure.properties.AdventureProperties;
 import adventure.server.AdventureServer;
 import adventure.types.DayCycle;
 import adventure.types.Sounds;
+import tools.Logger;
 
 public class World implements Updateable
 {

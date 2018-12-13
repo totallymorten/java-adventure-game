@@ -4,10 +4,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
-import tools.Vector2D;
-
 import adventure.game.entities.Updateable;
 import adventure.types.RenderPriority;
+import tools.Vector2D;
 
 public class GameView implements Updateable, Renderable
 {

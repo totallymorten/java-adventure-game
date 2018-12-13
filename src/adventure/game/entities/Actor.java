@@ -5,13 +5,13 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import tools.DirectionTool;
 import adventure.game.Game;
 import adventure.properties.AdventureProperties;
 import adventure.server.AdventureServer;
 import adventure.types.ActorStat;
 import adventure.types.Direction;
 import adventure.types.RenderPriority;
+import tools.DirectionTool;
 
 public abstract class Actor extends HealthEntity implements Animating
 {

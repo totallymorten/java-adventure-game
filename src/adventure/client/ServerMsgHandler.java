@@ -1,6 +1,5 @@
 package adventure.client;
 
-import tools.Logger;
 import adventure.comm.ActorStats;
 import adventure.comm.CommunicationObj;
 import adventure.comm.GameStats;
@@ -17,6 +16,7 @@ import adventure.game.entities.Actor.ActorState;
 import adventure.game.entities.Entity;
 import adventure.game.entities.HealthEntity;
 import adventure.types.ActorStat;
+import tools.Logger;
 
 public class ServerMsgHandler
 {

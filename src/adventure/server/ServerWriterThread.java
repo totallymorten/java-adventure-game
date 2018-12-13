@@ -6,8 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.SocketException;
 import java.util.ArrayList;
 
-import tools.Logger;
 import adventure.comm.CommunicationObj;
+import tools.Logger;
 
 public class ServerWriterThread extends Thread
 {

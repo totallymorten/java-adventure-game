@@ -5,10 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import engine.Keys;
-
 import adventure.engine.AdventureGame;
 import adventure.types.RenderPriority;
+import engine.Keys;
 
 public class LoginScreen implements Renderable
 {

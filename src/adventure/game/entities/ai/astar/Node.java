@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import adventure.game.Game;
 import adventure.game.TileMap;
-import adventure.game.entities.Actor;
 import adventure.game.entities.Player;
 
 public class Node

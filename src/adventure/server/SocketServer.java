@@ -9,8 +9,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import tools.Logger;
 import adventure.comm.CommunicationObj;
+import tools.Logger;
 
 public class SocketServer extends Thread
 {

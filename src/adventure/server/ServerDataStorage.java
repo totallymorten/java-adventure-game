@@ -1,6 +1,5 @@
 package adventure.server;
 
-import tools.Logger;
 import adventure.game.Game;
 import adventure.game.TileMap;
 

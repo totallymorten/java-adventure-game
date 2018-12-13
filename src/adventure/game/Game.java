@@ -10,8 +10,6 @@ import java.util.Random;
 
 import javax.sound.sampled.Clip;
 
-
-import tools.Logger;
 import adventure.engine.AdventureGame;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Animating;
@@ -25,6 +23,7 @@ import adventure.game.screen.MessageWindow;
 import adventure.properties.AdventureProperties;
 import adventure.server.AdventureServer;
 import adventure.types.Sounds;
+import tools.Logger;
 
 
 public class Game

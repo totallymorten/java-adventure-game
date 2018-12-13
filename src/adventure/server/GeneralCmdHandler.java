@@ -1,11 +1,10 @@
 package adventure.server;
 
-import tools.Logger;
 import adventure.comm.CommandObj;
 import adventure.comm.Login;
 import adventure.comm.LoginStatus;
 import adventure.comm.PlayerMove;
-import adventure.game.Game;
+import tools.Logger;
 
 public class GeneralCmdHandler extends CommandHandler
 {

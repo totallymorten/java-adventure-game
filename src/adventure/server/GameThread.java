@@ -2,16 +2,15 @@ package adventure.server;
 
 import java.util.Random;
 
-import tools.Logger;
-import tools.TimeTool;
 import adventure.game.Game;
 import adventure.game.TileMap;
 import adventure.game.World;
 import adventure.game.entities.GraveStone;
-import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Updateable;
 import adventure.game.entities.ai.astar.AStarService;
 import adventure.properties.AdventureProperties;
+import tools.Logger;
+import tools.TimeTool;
 
 public class GameThread extends Thread
 {

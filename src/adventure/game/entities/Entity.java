@@ -5,13 +5,12 @@ import java.awt.Image;
 import java.awt.Point;
 import java.util.HashMap;
 
-import tools.ImageTool;
-
 import adventure.comm.CommunicationObj;
 import adventure.game.Game;
 import adventure.game.Renderable;
 import adventure.game.TileMap;
 import adventure.types.RenderPriority;
+import tools.ImageTool;
 
 
 

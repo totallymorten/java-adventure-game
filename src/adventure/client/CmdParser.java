@@ -2,10 +2,9 @@ package adventure.client;
 
 import java.util.StringTokenizer;
 
-import tools.Logger;
-
 import adventure.comm.CommandObj;
 import adventure.comm.SayCmd;
+import tools.Logger;
 
 public abstract class CmdParser
 {

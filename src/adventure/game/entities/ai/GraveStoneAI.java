@@ -1,11 +1,11 @@
 package adventure.game.entities.ai;
 
-import tools.Logger;
 import adventure.game.Game;
 import adventure.game.World;
 import adventure.game.entities.Actor;
 import adventure.types.DayCycle;
 import adventure.types.Direction;
+import tools.Logger;
 
 public class GraveStoneAI extends AI
 {

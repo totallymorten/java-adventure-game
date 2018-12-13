@@ -2,9 +2,8 @@ package adventure.game;
 
 import javax.sound.sampled.Clip;
 
-import tools.Logger;
-
 import adventure.types.Sounds;
+import tools.Logger;
 
 public class SoundPlayer implements Runnable
 {

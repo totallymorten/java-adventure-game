@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import tools.Logger;
-
 import adventure.game.GameScreen;
 import adventure.game.Renderable;
 import adventure.game.entities.Player;

@@ -1,10 +1,10 @@
 package adventure.server;
 
-import tools.Logger;
 import adventure.comm.CommandObj;
 import adventure.comm.UpdateEntityPos;
 import adventure.game.Game;
 import adventure.game.entities.Entity;
+import tools.Logger;
 
 public class UpdateEntityPosHandler extends CommandHandler
 {

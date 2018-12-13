@@ -2,7 +2,6 @@ package adventure.client;
 
 import java.awt.Point;
 
-import tools.Logger;
 import adventure.comm.Attack;
 import adventure.comm.CommandObj;
 import adventure.comm.CommunicationObj;
@@ -18,6 +17,7 @@ import adventure.game.entities.Entity;
 import adventure.game.entities.Player;
 import adventure.types.Direction;
 import adventure.types.RequestDataType;
+import tools.Logger;
 
 public class AdventureClient
 {

@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.SocketException;
 
-import tools.Logger;
 import adventure.comm.CommunicationObj;
+import tools.Logger;
 
 public class ClientSocketReader extends Thread
 {

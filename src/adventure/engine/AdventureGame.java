@@ -14,8 +14,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
-import tools.Logger;
-import tools.TimeTool;
 import adventure.client.AdventureClient;
 import adventure.client.ServerMsgHandler;
 import adventure.comm.CommunicationObj;
@@ -46,6 +44,8 @@ import adventure.types.Sounds;
 import adventure.types.Tiles;
 import engine.JavaEngine;
 import engine.Keys;
+import tools.Logger;
+import tools.TimeTool;
 
 public class AdventureGame extends JavaEngine
 {

@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import tools.Logger;
 import adventure.game.Game;
 import adventure.game.TileMap;
 import adventure.game.World;
@@ -18,6 +17,7 @@ import adventure.server.AdventureServer;
 import adventure.types.DayCycle;
 import adventure.types.Direction;
 import adventure.types.Sounds;
+import tools.Logger;
 
 public class ZombieAI extends AI
 {

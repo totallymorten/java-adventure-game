@@ -1,13 +1,11 @@
 package adventure.game.entities.ai.astar;
 
 import java.awt.Point;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import adventure.engine.AdventureGame;
 import adventure.game.Game;
-
 import tools.Logger;
 import tools.TimeTool;
 

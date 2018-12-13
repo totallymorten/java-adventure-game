@@ -2,7 +2,6 @@ package adventure.server;
 
 import java.util.List;
 
-import tools.Logger;
 import adventure.comm.CommandObj;
 import adventure.comm.NewEntity;
 import adventure.comm.PlayerData;
@@ -13,6 +12,7 @@ import adventure.game.World;
 import adventure.game.entities.Entity;
 import adventure.game.entities.Player;
 import adventure.types.RequestDataType;
+import tools.Logger;
 
 public class RequestDataHandler extends CommandHandler
 {

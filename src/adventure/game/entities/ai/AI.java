@@ -2,11 +2,11 @@ package adventure.game.entities.ai;
 
 import java.util.ArrayList;
 
-import tools.Logger;
 import adventure.comm.CommunicationObj;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Updateable;
 import adventure.types.Direction;
+import tools.Logger;
 
 public abstract class AI extends CommunicationObj implements Updateable
 {
