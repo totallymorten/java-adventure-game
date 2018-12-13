@@ -17,6 +17,7 @@ public class AdventureProperties
 			props.load(getClass().getResourceAsStream("/conf/game.properties"));
 			props.load(getClass().getResourceAsStream("/conf/world.properties"));
 			props.load(getClass().getResourceAsStream("/conf/settings.properties"));
+			props.load(getClass().getResourceAsStream("/conf/server.properties"));
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block

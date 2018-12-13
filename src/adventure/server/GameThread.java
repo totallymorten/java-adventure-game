@@ -11,11 +11,12 @@ import adventure.game.entities.GraveStone;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Updateable;
 import adventure.game.entities.ai.astar.AStarService;
+import adventure.properties.AdventureProperties;
 
 public class GameThread extends Thread
 {
 	double cycleTimeStart;
-	long FPS = 30;
+	long FPS = AdventureProperties.getLong("server_fps");
 	double period = 1000 / FPS;
 	
 	double gameStatUpdateDelay = 1000; // ms
@@ -98,7 +99,7 @@ public class GameThread extends Thread
 	{
 		try
 		{
-			Game.g.map = new TileMap(100, 100);
+			Game.g.map = new TileMap(AdventureProperties.getInt("game_tiles_width"), AdventureProperties.getInt("game_tiles_height"));
 		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
