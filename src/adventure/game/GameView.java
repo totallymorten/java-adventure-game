@@ -95,24 +95,24 @@ public class GameView implements Updateable, Renderable
 			if (Math.abs(diffy) > diffLowerThreshold)
 				speed.y = diffy;
 			
-			if (speed.x == 0 && speed.y == 0)
-			{
-				if (diffPrinted)
-				{
-					System.out.println("count = " + count);
-					System.out.println("##########");
-					count = 0;
-					diffPrinted = false; 
-				}
-				
-				return;
-				
-			}
+//			if (speed.x == 0 && speed.y == 0)
+//			{
+//				if (diffPrinted)
+//				{
+//					System.out.println("count = " + count);
+//					System.out.println("##########");
+//					count = 0;
+//					diffPrinted = false; 
+//				}
+//				
+//				return;
+//				
+//			}
 			
-			if (Math.abs(speed.x + speed.y) > 0)
-			{
-				//System.out.println("");
-			}
+//			if (Math.abs(speed.x + speed.y) > 0)
+//			{
+//				//System.out.println("");
+//			}
 
 
 			if (Math.abs(speed.x) > MAX_SPEED)
@@ -130,26 +130,25 @@ public class GameView implements Updateable, Renderable
 			deltax = speed.x * speedFactor * sec;
 			deltay = speed.y * speedFactor * sec;
 
-			if (!diffPrinted)
-			{
-				System.out.println("##########");
-				System.out.println("diffy = " + diffy);
-				System.out.println("deltay = " + deltay);
-				diffPrinted = true;
-			}
+//			if (!diffPrinted)
+//			{
+//				System.out.println("##########");
+//				System.out.println("diffy = " + diffy);
+//				System.out.println("deltay = " + deltay);
+//				diffPrinted = true;
+//			}
+//			
+//			if (diffPrinted)
+//			{
+//				System.out.println("diffy = " + diffy);
+//				System.out.println("deltay = " + deltay);				
+//			}
 			
-			if (diffPrinted)
-			{
-				System.out.println("diffy = " + diffy);
-				System.out.println("deltay = " + deltay);				
-			}
-			
-//			if (deltax > 0 && ())
 			
 			x += deltax;
 			y += deltay;
 			
-			count++;
+//			count++;
 				
 		}
 		catch (Exception e)
