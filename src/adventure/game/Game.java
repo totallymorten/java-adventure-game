@@ -208,7 +208,7 @@ public class Game
 		
 		// check for view visibility (else, don't render)
 		if (diffx < -g.map.tileWidth || diffx > (screen.width)
-		|| diffy < -g.map.tileHeight || diffx > (screen.height))
+		|| diffy < -g.map.tileHeight || diffy > (screen.height))
 		return false;
 
 		if (TileMap.selectLightLevel(e.tileX, e.tileY) <= 0.0f)
