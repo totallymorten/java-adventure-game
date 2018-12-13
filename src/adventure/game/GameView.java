@@ -11,7 +11,7 @@ import adventure.types.RenderPriority;
 
 public class GameView implements Updateable, Renderable
 {
-	public int x,y;
+	private double x,y;
 	private GameScreen screen;
 	private TileMap map;
 	
@@ -23,20 +23,57 @@ public class GameView implements Updateable, Renderable
 		this.y = getWantedY();
 	}
 	
-	public Point translateRealPosToViewRealPos(Point realPos)
+	public int setX(double newX)
 	{
-		return new Point(realPos.x - x, realPos.y - y);
+		this.x = newX;
+		
+		return (int)Math.round(this.x);
 	}
 	
-	int speedFactor = 1;
+	public int getXInt()
+	{
+		return (int)Math.round(this.x);
+	}
+
+	public double getX()
+	{
+		return this.x;
+	}
+
+	public int setY(double newY)
+	{
+		this.y = newY;
+		
+		return (int)Math.round(this.y);
+	}
+	
+	public int getYInt()
+	{
+		return (int)Math.round(this.y);
+	}
+
+	public double getY()
+	{
+		return this.y;
+	}
+
+	public Point translateRealPosToViewRealPos(Point realPos)
+	{
+		return new Point(realPos.x - getXInt(), realPos.y - getYInt());
+	}
+	
+	double speedFactor = 2;
 	Vector2D speed = new Vector2D(0, 0);
-	final int diffLowerThreshold = 50;
-	final int MAX_SPEED = 500;
+	final double diffLowerThreshold = 0.4;//Game.g.screen.width / 20;
+	final double MAX_SPEED = 2000;
+	final double MIN_SPEED = 10;
 	double tenE3 = Math.pow(10, 3);
 	
 	private double deltax = 0.0;
 	private double deltay = 0.0;
-	
+
+	boolean diffPrinted = false;
+	int count = 0;
 	public void update(double period)
 	{
 		try
@@ -49,8 +86,8 @@ public class GameView implements Updateable, Renderable
 			int wantedx = getWantedX();
 			int wantedy = getWantedY();
 			
-			int diffx = wantedx - x;
-			int diffy = wantedy - y;
+			double diffx = (double)wantedx - x;
+			double diffy = (double)wantedy - y;
 			
 			if (Math.abs(diffx) > diffLowerThreshold)
 				speed.x = diffx;
@@ -58,19 +95,61 @@ public class GameView implements Updateable, Renderable
 			if (Math.abs(diffy) > diffLowerThreshold)
 				speed.y = diffy;
 			
+			if (speed.x == 0 && speed.y == 0)
+			{
+				if (diffPrinted)
+				{
+					System.out.println("count = " + count);
+					System.out.println("##########");
+					count = 0;
+					diffPrinted = false; 
+				}
+				
+				return;
+				
+			}
+			
+			if (Math.abs(speed.x + speed.y) > 0)
+			{
+				//System.out.println("");
+			}
+
+
 			if (Math.abs(speed.x) > MAX_SPEED)
 				speed.x = MAX_SPEED * Math.signum(speed.x);
 			
 			if (Math.abs(speed.y) > MAX_SPEED)
 				speed.y = MAX_SPEED * Math.signum(speed.y);
+
+			if (Math.abs(speed.x) < MIN_SPEED && speed.x != 0)
+				speed.x = MIN_SPEED * Math.signum(speed.x);
 			
+			if (Math.abs(speed.y) < MIN_SPEED && speed.y != 0)
+				speed.y = MIN_SPEED * Math.signum(speed.y);
+
 			deltax = speed.x * speedFactor * sec;
 			deltay = speed.y * speedFactor * sec;
+
+			if (!diffPrinted)
+			{
+				System.out.println("##########");
+				System.out.println("diffy = " + diffy);
+				System.out.println("deltay = " + deltay);
+				diffPrinted = true;
+			}
+			
+			if (diffPrinted)
+			{
+				System.out.println("diffy = " + diffy);
+				System.out.println("deltay = " + deltay);				
+			}
 			
 //			if (deltax > 0 && ())
 			
 			x += deltax;
 			y += deltay;
+			
+			count++;
 				
 		}
 		catch (Exception e)
@@ -85,7 +164,7 @@ public class GameView implements Updateable, Renderable
 		wantedx = (wantedx < 0) ? 0 : wantedx;
 		wantedx = (wantedx + screen.width) > map.mapW*map.tileWidth ? map.mapW*map.tileWidth - screen.width : wantedx;
 		
-		return wantedx;
+		return (wantedx - (wantedx % Game.g.map.tileWidth));
 	}
 	
 	private int getWantedY()
@@ -94,7 +173,7 @@ public class GameView implements Updateable, Renderable
 		wantedy = (wantedy < 0) ? 0 : wantedy;
 		wantedy = (wantedy + screen.height) > map.mapH*map.tileHeight ? map.mapH*map.tileHeight - screen.height : wantedy;
 
-		return wantedy;
+		return (wantedy - (wantedy % Game.g.map.tileHeight));
 	}
 	
 	public void render(Graphics g)
@@ -103,17 +182,23 @@ public class GameView implements Updateable, Renderable
 
 		
 		int viewH = 0, viewW = 0;
-		int tilex = x < Game.g.tileWidth ? 0 : Math.round(x / Game.g.tileWidth - 1);
-		int tiley = y < Game.g.tileHeight ? 0 : Math.round(y / Game.g.tileHeight - 1);
+		int tilex = x < Game.g.tileWidth ? 0 : (int)Math.floor(x / Game.g.tileWidth) - 1;
+		int tiley = y < Game.g.tileHeight ? 0 : (int)Math.floor(y / Game.g.tileHeight) - 1;
 		
-		int offsetX = x - tilex*Game.g.tileWidth;
-		int offsetY = y - tiley*Game.g.tileHeight;
+//		if ((tilex + screen.tilesx) >= map.mapW)
+//			tilex--;
+//		
+//		if ((tiley + screen.tilesy) >= map.mapH)
+//			tiley--;
 		
-		for (int h = tiley; h <= (tiley + screen.tilesy); h++)
+		int offsetX = getXInt() - tilex*Game.g.tileWidth;
+		int offsetY = getYInt() - tiley*Game.g.tileHeight;
+		
+		for (int h = tiley; (h <= (tiley + screen.tilesy)) && (h < Game.g.map.mapH); h++)
 		{
 			viewW = 0;
 			//   for mapW
-			for (int w = tilex; w <= (tilex + screen.tilesx); w++)
+			for (int w = tilex; (w <= (tilex + screen.tilesx)) && (w < Game.g.map.mapW); w++)
 			{
 				//img = (Game.g.images.get(tiles[h][w]))[(int)(TileMap.selectLightLevel(w, h) * 10)];
 				

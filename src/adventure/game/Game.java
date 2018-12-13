@@ -203,9 +203,12 @@ public class Game
 	
 	public boolean isVisible(Entity e)
 	{
+		int diffx = e.getRealPoint().x - view.getXInt();
+		int diffy = e.getRealPoint().y - view.getYInt();
+		
 		// check for view visibility (else, don't render)
-		if (e.getRealPoint().x < view.x || e.getRealPoint().x > (view.x + screen.width)
-		|| e.getRealPoint().y < view.y || e.getRealPoint().y > (view.y + screen.height))
+		if (diffx < -g.map.tileWidth || diffx > (screen.width)
+		|| diffy < -g.map.tileHeight || diffx > (screen.height))
 		return false;
 
 		if (TileMap.selectLightLevel(e.tileX, e.tileY) <= 0.0f)

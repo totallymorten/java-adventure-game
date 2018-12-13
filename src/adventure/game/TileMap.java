@@ -196,8 +196,8 @@ public class TileMap extends CommunicationObj
 	{
 		//Logger.trace("TileMap.collision("+newx+","+newy+")");
 		
-		if (newx < 0 || newx > (mapW - 2)
-		||  newy < 0 || newy > (mapH - 2))
+		if (newx < 0 || newx > (mapW - 1)
+		||  newy < 0 || newy > (mapH - 1))
 		{
 			Logger.trace("TileMap.collision(): Collision with edge [mapW:"+Game.g.map.mapW+",mapH:"+Game.g.map.mapH+"]");
 			return new Exception("Collision with edge of screen");
