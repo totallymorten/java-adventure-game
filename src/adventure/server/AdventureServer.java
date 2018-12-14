@@ -135,7 +135,7 @@ public class AdventureServer
 		Game.g.scheduleRemovePlayer(p);
 	}
 
-	public static synchronized void newEntity(Entity e)
+	public static synchronized void msgClientNewEntity(Entity e)
 	{
 		addServerMessage(new ServerMessage(ServerMessage.ALL_CLIENTS, new NewEntity(e)));
 	}

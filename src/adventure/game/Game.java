@@ -144,7 +144,7 @@ public class Game
 		MasterZombie mz = new MasterZombie(x, y, null);
 		Logger.info("creating masterzombie at ("+x+","+y+"): " + mz);
 		Game.g.addEntity(mz);
-		AdventureServer.newEntity(mz);
+		AdventureServer.msgClientNewEntity(mz);
 		
 		totalMasterZombies++;
 	}
@@ -363,7 +363,7 @@ public class Game
 	{
 		Entity e = new Zombie(i,j,null);
 		addEntity(e);
-		AdventureServer.newEntity(e);
+		AdventureServer.msgClientNewEntity(e);
 	}
 
 	public synchronized void handleAttack(int attacker, int defender)

@@ -70,7 +70,7 @@ public class HealthEntity extends Entity
 			
 			TimedEntity te = new TimedEntity(tileX,tileY,Entities.BLOOD_HIT1, 200);
 			Game.g.addEntity(te);
-			AdventureServer.newEntity(te);				
+			AdventureServer.msgClientNewEntity(te);				
 			
 			this.health -= (attack - defence);
 			
@@ -91,7 +91,9 @@ public class HealthEntity extends Entity
 					Game.g.killedZombies++;
 				
 				// adding pool of blood instead
-				AdventureServer.newEntity(new Entity(tileX,tileY,Entities.BLOOD1));
+				Entity blood = new Entity(tileX,tileY,Entities.BLOOD1);
+				Game.g.addEntity(blood);
+				AdventureServer.msgClientNewEntity(blood);
 
 				// playing die sound
 				AdventureServer.playSound(Sounds.DIE1);
@@ -108,7 +110,7 @@ public class HealthEntity extends Entity
 			AdventureServer.playSound(Sounds.BLOCK);
 			TimedEntity te = new TimedEntity(tileX,tileY,Entities.BLOCK, 200);
 			Game.g.addEntity(te);
-			AdventureServer.newEntity(te);
+			AdventureServer.msgClientNewEntity(te);
 		}
 		return false; // defender was not killed
 		
