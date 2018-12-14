@@ -66,7 +66,7 @@ public class ZombieAI extends AI
 		Logger.trace("ZOMBIE AI: ACT!");
 		Logger.trace("ai_next_pathfinding = " + ai_next_pathfinding);
 		
-		if (target != null && !target.active)
+		if (target != null && (!target.active || target.isDead()))
 		{
 			target = null;
 			state = ZombieAIState.SEARCHING;

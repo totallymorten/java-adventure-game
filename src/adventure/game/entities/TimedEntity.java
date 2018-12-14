@@ -31,7 +31,7 @@ public class TimedEntity extends Entity
 
 		if (this.entityTime <= 0)
 		{
-			AdventureServer.removeEntity(this);
+			AdventureServer.scheduleRemoveEntity(this);
 		}
 	}
 

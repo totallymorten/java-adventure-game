@@ -409,13 +409,6 @@ public class AdventureGame extends JavaEngine
 		}
 	}
 
-	private void handleUpdateables()
-	{
-		Game.g.updateables.removeAll(Game.g.removeUpdateables);
-		Game.g.updateables.addAll(Game.g.addUpdateables);
-
-		Game.g.clearUpdateableArrays();
-	}
 	
 	private void handleRenderables()
 	{
@@ -514,7 +507,7 @@ public class AdventureGame extends JavaEngine
 		handleServerMessages();
 		handleRenderables();
 		handleAnimating();
-		handleUpdateables();
+		Game.g.handleUpdateables();
 	}
 
 	@Override

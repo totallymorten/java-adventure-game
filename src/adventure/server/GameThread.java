@@ -7,6 +7,7 @@ import adventure.game.TileMap;
 import adventure.game.World;
 import adventure.game.entities.GraveStone;
 import adventure.game.entities.Updateable;
+import adventure.game.entities.Zombie;
 import adventure.game.entities.ai.astar.AStarService;
 import adventure.properties.AdventureProperties;
 import tools.Logger;
@@ -77,7 +78,8 @@ public class GameThread extends Thread
 
 	private void gameUpdate(double ms)
 	{
-		handleUpdateables();
+		Game.g.handleUpdateables();
+		Game.g.handlePlayers();
 		
 		for (Updateable upd : Game.g.updateables)
 		{
@@ -86,14 +88,6 @@ public class GameThread extends Thread
 
 	}
 
-	private void handleUpdateables()
-	{
-		Game.g.updateables.removeAll(Game.g.removeUpdateables);
-		Game.g.updateables.addAll(Game.g.addUpdateables);
-
-		Game.g.clearUpdateableArrays();
-	}
-	
 	private void initGameData()
 	{
 		try
@@ -127,6 +121,19 @@ public class GameThread extends Thread
 			Logger.info("creating gravestone at ("+x+","+y+"): " + gravestone);
 			Game.g.addEntity(gravestone);
 		}
+
+		// DEBUG enemies
+//		for (int i = 0; i < 4; i++)
+//		{
+//			Zombie z = new Zombie(i, 5, null);
+//			Game.g.addEntity(z);			
+//		}
+//		
+//		for (int i = 0; i < 4; i++)
+//		{
+//			GraveStone s = new GraveStone(i, 6, null);
+//			Game.g.addEntity(s);			
+//		}
 		
 		Game.g.addUpdateable(World.world);
 		Game.g.addUpdateable(AStarService.service);

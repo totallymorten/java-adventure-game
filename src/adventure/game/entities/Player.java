@@ -12,6 +12,7 @@ import adventure.properties.AdventureProperties;
 public class Player extends Actor
 {
 	public String username;
+	public String clientId;
 	
 	/**
 	 * 

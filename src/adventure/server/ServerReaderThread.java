@@ -78,7 +78,7 @@ public class ServerReaderThread extends Thread
 			AdventureServer.removeClientReader(clientId);
 			Player p = Game.g.getPlayer(clientId);
 			p.active = false;
-			AdventureServer.removeEntity(p);
+			AdventureServer.scheduleRemoveEntity(p);
 		}
 
 		Logger.trace(className + ".run(): terminating");

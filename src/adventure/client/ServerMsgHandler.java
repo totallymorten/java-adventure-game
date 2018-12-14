@@ -43,7 +43,7 @@ public class ServerMsgHandler
 			
 			if (e != null)
 			{
-				Logger.error("ServerMsgHandler.handleSrvMsg(): entity with id ["+e.entityId+"] already exists! type is ["+e.getClass().getName()+"]");
+				Logger.debug("ServerMsgHandler.handleSrvMsg(): entity with id ["+e.entityId+"] already exists! type is ["+e.getClass().getName()+"]");
 				return;
 			}
 			else
@@ -185,7 +185,7 @@ public class ServerMsgHandler
 		Entity e;
 		if ((e = Game.g.getEntity(entityId)) == null)
 		{
-			Logger.error("ServerMsgHandler.findEntity(): entity with id ["+entityId+"] not found!");
+			Logger.debug("ServerMsgHandler.findEntity(): entity with id ["+entityId+"] not found!");
 			// if entity not found, request entity data
 			AdventureClient.c.requestEntity(entityId);
 			return null;

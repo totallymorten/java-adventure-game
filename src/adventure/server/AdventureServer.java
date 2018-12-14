@@ -122,13 +122,19 @@ public class AdventureServer
 		playSound(sounds[position]);
 	}
 
-	public static synchronized void removeEntity(Entity e)
+	public static synchronized void scheduleRemoveEntity(Entity e)
 	{
 		Logger.info(LOG_PREFIX + "removeEntity(): removing entity: " + e);
 		Game.g.removeEntity(e);
 		addServerMessage(new ServerMessage(ServerMessage.ALL_CLIENTS, new RemoveEntity(e.entityId)));
 	}
-	
+
+	public static synchronized void scheduleRemovePlayer(Player p)
+	{
+		Logger.info(LOG_PREFIX + "scheduleRemovePlayer(): removing player: " + p);
+		Game.g.scheduleRemovePlayer(p);
+	}
+
 	public static synchronized void newEntity(Entity e)
 	{
 		addServerMessage(new ServerMessage(ServerMessage.ALL_CLIENTS, new NewEntity(e)));

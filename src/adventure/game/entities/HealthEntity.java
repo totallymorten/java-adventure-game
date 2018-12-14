@@ -77,8 +77,12 @@ public class HealthEntity extends Entity
 			if (this.health <= 0)
 			{
 				// removing this from the game
-				AdventureServer.removeEntity(this);
-				
+				AdventureServer.scheduleRemoveEntity(this);
+
+				// handle remove player
+				if (this instanceof Player)
+					AdventureServer.scheduleRemovePlayer((Player)this);
+
 				if (this instanceof GraveStone)
 					Game.g.killedGraveStones++;
 				else if (this instanceof MasterZombie)
@@ -110,5 +114,9 @@ public class HealthEntity extends Entity
 		
 	}
 
+	public boolean isDead()
+	{
+		return health <= 0;
+	}
 
 }

@@ -37,7 +37,8 @@ public class RequestDataHandler extends CommandHandler
 			if (player == null)
 			{
 				Logger.info(className + ".handleCommand(): creating new player for client ["+clientId+"]");
-				player = new Player(0, 0, null);				
+				player = new Player(0, 0, null);
+				player.clientId = clientId;
 				Game.g.addPlayer(clientId, player);
 				Logger.info(className + ".handleCommand(): entity id ["+player.entityId+"]");
 			}

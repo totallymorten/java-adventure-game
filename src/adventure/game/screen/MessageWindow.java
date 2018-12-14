@@ -15,7 +15,7 @@ public class MessageWindow implements Renderable, Updateable
 	int width = Game.g.screen.width;
 	int height = 0;
 	long countdown = 0;
-	long messageLifeMs = 4000;
+	long messageLifeMs = 2000;
 	int transparancy = 60;
 	int textTransparancy = 200;
 	int textOffsetX = 5;

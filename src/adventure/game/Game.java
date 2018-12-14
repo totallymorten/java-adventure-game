@@ -59,7 +59,7 @@ public class Game
 	public ArrayList<Updateable> updateables = new ArrayList<Updateable>();
 	public ArrayList<Updateable> removeUpdateables = new ArrayList<Updateable>();
 	public ArrayList<Updateable> addUpdateables = new ArrayList<Updateable>();
-
+	
 	public HashMap<Integer, Entity> entities = new HashMap<Integer, Entity>();
 	
 	public HashMap<Sounds, Clip> sounds = new HashMap<Sounds, Clip>();
@@ -73,6 +73,8 @@ public class Game
 	
 	
 	private Hashtable<String, Player> players = new Hashtable<String, Player>();
+	private ArrayList<Player> removePlayers = new ArrayList<Player>();
+	
 	
 	public synchronized Player getPlayer(String id)
 	{
@@ -216,7 +218,7 @@ public class Game
 		return true;
 	}
 	
-	public synchronized void removeRenderable(Renderable r)
+	public synchronized void scheduleRemoveRenderable(Renderable r)
 	{
 		removeRenderables.add(r);
 	}
@@ -232,7 +234,7 @@ public class Game
 		addRenderables.clear();
 	}
 	
-	public synchronized void removeAnimating(Animating a)
+	public synchronized void scheduleRemoveAnimating(Animating a)
 	{
 		removeAnimating.add(a);
 	}
@@ -249,14 +251,37 @@ public class Game
 	}
 
 
-	public synchronized void removeUpdateable(Updateable u)
+	public synchronized void scheduleRemoveUpdateable(Updateable u)
 	{
 		removeUpdateables.add(u);
 	}
-
+	
+	public synchronized void scheduleRemovePlayer(Player p)
+	{
+		removePlayers.add(p);
+	}
+	
 	public synchronized void addUpdateable(Updateable u)
 	{
 		addUpdateables.add(u);
+	}
+	
+	public synchronized void handleUpdateables()
+	{
+		updateables.removeAll(removeUpdateables);
+		updateables.addAll(Game.g.addUpdateables);
+
+		clearUpdateableArrays();
+	}
+
+	public synchronized void handlePlayers()
+	{
+		for (Player p : removePlayers)
+		{
+			players.remove(p.clientId);
+		}
+		
+		removePlayers.clear();
 	}
 	
 	public synchronized void removeEntity(Entity e)
@@ -280,8 +305,8 @@ public class Game
 		
 		Logger.trace(LOG_PREFIX + ".removeEntity(): adding entity [entityId:"+entityId+"] to remove arrays");
 		
-		removeRenderable(e);
-		removeUpdateable(e);
+		scheduleRemoveRenderable(e);
+		scheduleRemoveUpdateable(e);
 		AStarService.threads.remove(e);
 	}
 
