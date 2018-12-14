@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 
 import adventure.engine.AdventureGame;
 import adventure.types.RenderPriority;
-import engine.Keys;
 
 public class LoginScreen implements Renderable
 {
@@ -20,8 +19,9 @@ public class LoginScreen implements Renderable
 	}
 
 	int x = 20;
+	int y = 20;
 	int ySpacing = 40;
-	int yUsername = 20;
+	int yUsername = y + ySpacing*2;
 	int yServer = yUsername + ySpacing;
 	int yPort = yServer + ySpacing;
 	int boxWidth = 150;
@@ -87,7 +87,10 @@ public class LoginScreen implements Renderable
 		g.fillRect(0, 0, AdventureGame.WIDTH, AdventureGame.HEIGHT);
 		
 		g.setFont(new Font("Arial", Font.BOLD, 16));
-		
+
+		g.setColor(Color.white);
+		g.drawString("[ESC]", x-10, y);
+
 		// selected color
 		g.setColor(Color.cyan);
 		g.fillRect(x + boxOffsetX - activeBorderSize, activeBoxY + boxOffsetY - activeBorderSize, boxWidth + 2 * activeBorderSize, boxHeight + 2 * activeBorderSize);			
