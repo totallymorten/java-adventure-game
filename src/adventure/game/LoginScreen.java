@@ -73,7 +73,7 @@ public class LoginScreen implements Renderable
 			}
 		}
 		
-		else if (!(Keys.pull(KeyEvent.VK_SHIFT)) && Keys.hasKey())
+		else if (!(Keys.pull(KeyEvent.VK_SHIFT)) && !(Keys.check(KeyEvent.VK_ESCAPE)) && Keys.hasKey())
 		{
 			activeText.append(Keys.pullKeyEvent().getKeyChar());
 		}

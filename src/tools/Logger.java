@@ -87,6 +87,10 @@ public abstract class Logger
 		s = "[ERROR] " + s;
 		println(s);
 		fileLog(s);
+		
+		if (Game.MODE == Game.MODE_CLIENT)
+			Game.g.addMessage(s);
+
 	}
 	
 	private static void println(String s)
