@@ -43,15 +43,15 @@ public class LoginScreen implements Renderable
 	
 	private LoginState state = LoginState.USERNAME;
 	
-	public void handleKeyEvent()
+	public void handleKeyEvent(KeyEvent event)
 	{
-		if (Keys.pull(KeyEvent.VK_BACK_SPACE))
+		if (event.getKeyCode() == KeyEvent.VK_BACK_SPACE)
 		{
 			if (activeText.length() > 0)
 				activeText.deleteCharAt(activeText.length() - 1); // delete last letter
 		}
 		
-		else if (Keys.pull(KeyEvent.VK_DOWN) || Keys.pull(KeyEvent.VK_TAB))
+		else if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_TAB)
 		{
 			if (state == LoginState.USERNAME)
 			{
@@ -73,9 +73,9 @@ public class LoginScreen implements Renderable
 			}
 		}
 		
-		else if (!(Keys.pull(KeyEvent.VK_SHIFT)) && !(Keys.check(KeyEvent.VK_ESCAPE)) && Keys.hasKey())
+		else if ((event.getKeyCode() != KeyEvent.VK_SHIFT) && (event.getKeyCode() != KeyEvent.VK_ESCAPE))
 		{
-			activeText.append(Keys.pullKeyEvent().getKeyChar());
+			activeText.append(event.getKeyChar());
 		}
 
 	}

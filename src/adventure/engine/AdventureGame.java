@@ -310,19 +310,25 @@ public class AdventureGame extends JavaEngine
 					e1.printStackTrace();
 				}
 			}
-			else
-				handleLoginKeys();
 		}
 		
 		
 		super.handleKeys();
 	}
-
-	public void handleLoginKeys()
-	{
-		loginScreen.handleKeyEvent();
-	}
 	
+	
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		if (state == GameState.LOGIN)
+		{
+			loginScreen.handleKeyEvent(e);
+		}
+
+		super.keyPressed(e);
+	}
+
 	public void handleGameKeys()
 	{
 		Direction dir = null;
