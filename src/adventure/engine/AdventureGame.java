@@ -307,7 +307,6 @@ public class AdventureGame extends JavaEngine
 				} 
 				catch (Exception e1)
 				{
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -316,7 +315,6 @@ public class AdventureGame extends JavaEngine
 		}
 		
 		
-		// TODO Auto-generated method stub
 		super.handleKeys();
 	}
 
