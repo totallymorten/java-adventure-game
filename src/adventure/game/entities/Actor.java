@@ -283,9 +283,20 @@ public abstract class Actor extends HealthEntity implements Animating
 		return false;
 	}
 
-	public boolean collides(int otherx, int othery)
+	public boolean isMoving()
 	{
-		return (otherx == tileX && othery == tileY);
+		return (state == ActorState.MOVING);
+	}
+	
+	public Point getMovePoint()
+	{
+		return new Point(newTileX, newTileY);
+	}
+	
+	public boolean collides(int otherNewTileX, int otherNewTileY)
+	{
+		return (!isMoving() && (otherNewTileX == tileX && otherNewTileY == tileY)) 
+			|| (isMoving() && (otherNewTileX == newTileX && otherNewTileY == newTileY));
 	}
 	
 
