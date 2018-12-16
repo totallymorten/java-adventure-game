@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import adventure.comm.CommunicationObj;
+import adventure.exception.AdventureException;
 import tools.Logger;
 
 public class SocketClient 
@@ -70,7 +71,7 @@ public class SocketClient
 		
 	}
 */
-	public void connectObject()
+	public void connectObject() throws AdventureException
 	{
 		try 
 		{
@@ -108,8 +109,8 @@ public class SocketClient
 		} 
 		catch (IOException e) 
 		{
-			Logger.error("Error, IOException occurred");
-			e.printStackTrace();
+			String msg = "IOException occurred while connection to host: " + e.getMessage();
+			throw new AdventureException(msg);		
 		}
 		
 	}

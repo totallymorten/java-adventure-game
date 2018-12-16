@@ -18,8 +18,8 @@ public class LoginScreen implements Renderable
 		return renderPriority;
 	}
 
-	int x = 20;
-	int y = 20;
+	int x = AdventureGame.WIDTH / 3;
+	int y = AdventureGame.HEIGHT / 3;
 	int ySpacing = 40;
 	int yUsername = y + ySpacing*2;
 	int yServer = yUsername + ySpacing;
@@ -89,7 +89,7 @@ public class LoginScreen implements Renderable
 		g.setFont(new Font("Arial", Font.BOLD, 16));
 
 		g.setColor(Color.white);
-		g.drawString("[ESC]", x-10, y);
+		g.drawString("[ESC]", 10, 20);
 
 		// selected color
 		g.setColor(Color.cyan);
@@ -120,6 +120,6 @@ public class LoginScreen implements Renderable
 		g.setColor(Color.black);
 		g.drawString(port.toString(), x + + boxOffsetX + textOffsetX, yPort + textOffsetY);
 
-}
+	}
 
 }

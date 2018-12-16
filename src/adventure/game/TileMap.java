@@ -97,10 +97,12 @@ public class TileMap extends CommunicationObj
 
 		int sightLightInc = Game.g.player.sightLevel - dist;
 
+		final float SIGHT_LIGHT_FACTOR = 0.1f;
+		
 		if (sightLightInc < 0)
 			return World.world.lightLevel;
 		
-		float newLight = World.world.lightLevel + (sightLightInc * 0.1f);
+		float newLight = World.world.lightLevel + (sightLightInc * SIGHT_LIGHT_FACTOR);
 		
 		if (newLight > 1.0f)
 			return 1.0f;
