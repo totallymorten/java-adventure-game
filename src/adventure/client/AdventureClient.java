@@ -11,6 +11,7 @@ import adventure.comm.PlayerData;
 import adventure.comm.PlayerMove;
 import adventure.comm.RequestData;
 import adventure.comm.UpdateEntityPos;
+import adventure.exception.AdventureException;
 import adventure.game.TileMap;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Entity;
@@ -25,7 +26,7 @@ public class AdventureClient
 	final String version = "0.0.1";
 	public static AdventureClient c = new AdventureClient();
 	
-	private void handleUserInput(String input)
+	private void handleUserInput(String input) throws AdventureException
 	{
 		CommandObj cmd = CmdParser.parseCmd(input);
 		
@@ -43,7 +44,7 @@ public class AdventureClient
 		this.sockClient = sockClient;
 	}
 	
-	public void startConsoleClient()
+	public void startConsoleClient() throws AdventureException
 	{
 		String input;
 		Console.println("Adventure client v" + version + " started");
@@ -76,7 +77,7 @@ public class AdventureClient
 		sockClient.sendCmdObj(new Attack(attacker.entityId, defender.entityId));
 	}
 	
-	public void connect(String ip, int port)
+	public void connect(String ip, int port) throws AdventureException
 	{
 		CommandObj obj = new ConnectCmd(ip, port);
 		handleCommand(obj);
@@ -185,7 +186,7 @@ public class AdventureClient
 		return sockClient.getMsgFromQueue();
 	}
 	
-	private void handleCommand(CommandObj comObj)
+	private void handleCommand(CommandObj comObj) throws AdventureException
 	{
 		CommandHandler.handleCommand(comObj, this);
 	}

@@ -1,6 +1,7 @@
 package adventure.client;
 
 import adventure.comm.CommandObj;
+import adventure.exception.AdventureException;
 
 public class ConnectCmd extends CommandObj
 {
@@ -39,7 +40,7 @@ public class ConnectCmd extends CommandObj
 	}
 
 	@Override
-	public void executeCmd()
+	public void executeCmd() throws AdventureException
 	{
 		this.sockClient =  new SocketClient(ip, port);
 		this.sockClient.connectObject();

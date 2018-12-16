@@ -2,10 +2,11 @@ package adventure.client;
 
 import adventure.comm.CommandObj;
 import adventure.comm.SayCmd;
+import adventure.exception.AdventureException;
 
 public abstract class CommandHandler
 {
-	public static void handleCommand(CommandObj cmd, AdventureClient client)
+	public static void handleCommand(CommandObj cmd, AdventureClient client) throws AdventureException
 	{
 		cmd.executeCmd();
 		
