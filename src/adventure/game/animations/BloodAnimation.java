@@ -11,6 +11,7 @@ import adventure.game.Renderable;
 import adventure.game.entities.Animating;
 import adventure.game.entities.BaseEntity;
 import adventure.server.AdventureServer;
+import adventure.types.Direction;
 import adventure.types.RenderPriority;
 import engine.exception.JavaEngineException;
 import particle.ParticleConfiguration;
@@ -25,12 +26,30 @@ public class BloodAnimation extends BaseEntity implements Animating {
 	
 	ParticleSystem p;
 	
-	public BloodAnimation(int tilex, int tiley) {
+	public BloodAnimation(int tilex, int tiley, Direction attackDirection) {
 		
 		this.tileX = tilex;
 		this.tileY = tiley;
 		
-		p = new ParticleSystem(6000, tilex*Game.g.tileWidth + (Game.g.tileWidth / 2), tiley*Game.g.tileHeight + (Game.g.tileHeight / 4), ParticleConfiguration.BLOOD_SPATTER1, Color.red);
+		ParticleConfiguration conf = null;
+		
+		switch (attackDirection)
+		{
+		case EAST:
+			conf = ParticleConfiguration.BLOOD_SPATTER_EAST;
+			break;
+		case WEST:
+			conf = ParticleConfiguration.BLOOD_SPATTER_WEST;
+			break;
+		case NORTH:
+			conf = ParticleConfiguration.BLOOD_SPATTER_NORTH;
+			break;
+		case SOUTH:
+			conf = ParticleConfiguration.BLOOD_SPATTER_SOUTH;
+			break;
+		}
+		
+		p = new ParticleSystem(6000, tilex*Game.g.tileWidth + (Game.g.tileWidth / 2), tiley*Game.g.tileHeight + (Game.g.tileHeight / 4), conf, Color.red);
 	}
 
 	@Override

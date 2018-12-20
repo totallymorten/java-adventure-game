@@ -10,8 +10,10 @@ import adventure.game.GameView;
 import adventure.game.animations.BloodAnimation;
 import adventure.properties.AdventureProperties;
 import adventure.server.AdventureServer;
+import adventure.types.Direction;
 import adventure.types.RenderPriority;
 import adventure.types.Sounds;
+import tools.DirectionTool;
 
 public class HealthEntity extends TileImageEntity
 {
@@ -76,9 +78,11 @@ public class HealthEntity extends TileImageEntity
 			Game.g.addEntity(te);
 			AdventureServer.msgClientNewEntity(te);				
 			
+			Direction attackDirection = DirectionTool.getDirectionFromEntities(attacker, this);
+			
 			// adding blood spray animation (particles)
 			// NOT adding to array because it's only a client (graphical) thing
-			BloodAnimation ba = new BloodAnimation(tileX, tileY);
+			BloodAnimation ba = new BloodAnimation(tileX, tileY, attackDirection);
 			AdventureServer.msgClientNewEntity(ba);
 
 			this.health -= (attack - defence);
