@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Point;
 
 import adventure.game.Game;
+import adventure.game.GameView;
 import adventure.properties.AdventureProperties;
 
 public class Player extends Actor
@@ -37,14 +38,12 @@ public class Player extends Actor
 		this.resetStats();
 	}
 	
-	public void render(Graphics g)
+	@Override
+	public void render(Graphics g, GameView view)
 	{
-		if (!Game.g.isVisible(this))
-			return;		
-
-		super.render(g);
+		super.render(g, view);
 		
-		Point viewPos = getViewRenderPoint();
+		Point viewPos = getViewRenderPoint(view);
 		
 		g.setColor(Color.white);
 		g.setFont(new Font("Courier New", Font.BOLD, 15));

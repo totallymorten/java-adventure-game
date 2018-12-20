@@ -6,13 +6,20 @@ import java.awt.Point;
 
 import adventure.game.Entities;
 import adventure.game.Game;
+import adventure.game.GameView;
+import adventure.game.animations.BloodAnimation;
 import adventure.properties.AdventureProperties;
 import adventure.server.AdventureServer;
 import adventure.types.RenderPriority;
 import adventure.types.Sounds;
 
-public class HealthEntity extends Entity
+public class HealthEntity extends TileImageEntity
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7528657901665689133L;
+	
 	public double attack = AdventureProperties.getDouble("he_attack");
 	public double defence = AdventureProperties.getDouble("he_defence");
 	public double health, maxHealth;
@@ -26,18 +33,15 @@ public class HealthEntity extends Entity
 	}
 
 	@Override
-	public void render(Graphics g)
+	public void render(Graphics g, GameView view)
 	{
-		if (!Game.g.isVisible(this))
-			return;
-
-		super.render(g);
+		super.render(g, view);
 		
 		// only render if actor is damaged
 		if (health == maxHealth)
 			return;
 		
-		Point viewPos = getViewRenderPoint();
+		Point viewPos = getViewRenderPoint(view);
 		
 		// drawing health background bar
 		g.setColor(new Color(130,4,9));
@@ -72,6 +76,11 @@ public class HealthEntity extends Entity
 			Game.g.addEntity(te);
 			AdventureServer.msgClientNewEntity(te);				
 			
+			// adding blood spray animation (particles)
+			// NOT adding to array because it's only a client (graphical) thing
+			BloodAnimation ba = new BloodAnimation(tileX, tileY);
+			AdventureServer.msgClientNewEntity(ba);
+
 			this.health -= (attack - defence);
 			
 			if (this.health <= 0)
@@ -91,7 +100,7 @@ public class HealthEntity extends Entity
 					Game.g.killedZombies++;
 				
 				// adding pool of blood instead
-				Entity blood = new Entity(tileX,tileY,Entities.BLOOD1);
+				TileImageEntity blood = new TileImageEntity(tileX,tileY,Entities.BLOOD1);
 				Game.g.addEntity(blood);
 				AdventureServer.msgClientNewEntity(blood);
 

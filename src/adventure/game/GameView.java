@@ -216,5 +216,4 @@ public class GameView implements Updateable, Renderable
 	{
 		return RenderPriority.BACKGROUND;
 	}
-
 }

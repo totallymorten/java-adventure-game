@@ -13,7 +13,8 @@ import adventure.game.Game;
 import adventure.game.World;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Actor.ActorState;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.HealthEntity;
 import adventure.types.ActorStat;
 import tools.Logger;
@@ -37,7 +38,7 @@ public class ServerMsgHandler
 		else if (msg instanceof NewEntity)
 		{
 			NewEntity cmd = (NewEntity) msg;
-			Entity e = Game.g.getEntity(cmd.entity.entityId);
+			BaseEntity e = Game.g.getEntity(cmd.entity.entityId);
 			
 			Logger.trace("ServerMsgHandler.handleSrvMsg(): received new entity: ["+cmd.entity+"]");
 			
@@ -55,12 +56,12 @@ public class ServerMsgHandler
 		{
 			
 			UpdateEntityPos cmd = (UpdateEntityPos) msg;
-			Entity e = findEntity(cmd.entityId);
+			BaseEntity e = findEntity(cmd.entityId);
 			
 			if (e != null)
 			{
 				Logger.trace(LOG_PREFIX + "updating entity with id ["+cmd.entityId+"] to position ["+cmd.entityPos+"]");
-				e.setNewPoint(cmd.entityPos);
+				e.setNewTilePoint(cmd.entityPos);
 				
 				if (e instanceof Actor)
 				{
@@ -180,9 +181,9 @@ public class ServerMsgHandler
 		}
 	}
 	
-	private static Entity findEntity(int entityId)
+	private static BaseEntity findEntity(int entityId)
 	{
-		Entity e;
+		BaseEntity e;
 		if ((e = Game.g.getEntity(entityId)) == null)
 		{
 			Logger.debug("ServerMsgHandler.findEntity(): entity with id ["+entityId+"] not found!");

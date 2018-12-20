@@ -8,4 +8,5 @@ public interface Renderable
 {
 	public RenderPriority getRenderPriority();
 	public void render(Graphics g);
+
 }

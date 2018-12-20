@@ -16,7 +16,8 @@ import adventure.comm.UpdateWorld;
 import adventure.game.Game;
 import adventure.game.World;
 import adventure.game.entities.Actor;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.HealthEntity;
 import adventure.game.entities.Player;
 import adventure.types.ActorStat;
@@ -122,7 +123,7 @@ public class AdventureServer
 		playSound(sounds[position]);
 	}
 
-	public static synchronized void scheduleRemoveEntity(Entity e)
+	public static synchronized void scheduleRemoveEntity(TileImageEntity e)
 	{
 		Logger.info(LOG_PREFIX + "removeEntity(): removing entity: " + e);
 		Game.g.removeEntity(e);
@@ -135,7 +136,7 @@ public class AdventureServer
 		Game.g.scheduleRemovePlayer(p);
 	}
 
-	public static synchronized void msgClientNewEntity(Entity e)
+	public static synchronized void msgClientNewEntity(BaseEntity e)
 	{
 		addServerMessage(new ServerMessage(ServerMessage.ALL_CLIENTS, new NewEntity(e)));
 	}

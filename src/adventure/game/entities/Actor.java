@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import adventure.game.Game;
+import adventure.game.GameView;
 import adventure.properties.AdventureProperties;
 import adventure.server.AdventureServer;
 import adventure.types.ActorStat;
@@ -15,6 +16,11 @@ import tools.DirectionTool;
 
 public abstract class Actor extends HealthEntity implements Animating
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6574159834280870869L;
+
 	public ArrayList<Class> friends = new ArrayList<Class>();
 	
 	public double stamina;
@@ -202,21 +208,11 @@ public abstract class Actor extends HealthEntity implements Animating
 		return stat;
 	}
 	
-	public void render(Graphics g)
-	{
-		if (!Game.g.isVisible(this))
-			return;		
-
-		super.render(g);
-		
-	}
-	
-	
 	
 	@Override
-	public Point getViewRenderPoint()
+	public Point getViewRenderPoint(GameView view)
 	{
-		Point p = super.getViewRenderPoint();
+		Point p = super.getViewRenderPoint(view);
 		
 		if (state == ActorState.MOVING)
 		{

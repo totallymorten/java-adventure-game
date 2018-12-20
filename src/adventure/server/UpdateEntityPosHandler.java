@@ -3,7 +3,7 @@ package adventure.server;
 import adventure.comm.CommandObj;
 import adventure.comm.UpdateEntityPos;
 import adventure.game.Game;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
 import tools.Logger;
 
 public class UpdateEntityPosHandler extends CommandHandler
@@ -19,8 +19,8 @@ public class UpdateEntityPosHandler extends CommandHandler
 		
 		Logger.trace(className + "handleCommand(): updating entity with id ["+cmd.entityId+"] to position ["+cmd.entityPos+"]");
 		
-		Entity e = Game.g.getEntity(cmd.entityId);
-		e.setNewPoint(cmd.entityPos);
+		BaseEntity e = Game.g.getEntity(cmd.entityId);
+		e.setNewTilePoint(cmd.entityPos);
 	}
 
 }

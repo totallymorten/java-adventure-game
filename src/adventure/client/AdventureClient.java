@@ -14,7 +14,7 @@ import adventure.comm.UpdateEntityPos;
 import adventure.exception.AdventureException;
 import adventure.game.TileMap;
 import adventure.game.entities.Actor;
-import adventure.game.entities.Entity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.Player;
 import adventure.types.Direction;
 import adventure.types.RequestDataType;
@@ -65,7 +65,7 @@ public class AdventureClient
 		sockClient.sendCmdObj(cmd);
 	}
 	
-	public void updateEntityPos(Entity e, Point pos)
+	public void updateEntityPos(TileImageEntity e, Point pos)
 	{
 		Logger.trace(this.getClass().getName() + ".updateEntityPos(): Updating entity position");
 		sockClient.sendCmdObj(new UpdateEntityPos(e.entityId, pos));

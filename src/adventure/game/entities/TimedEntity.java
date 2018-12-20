@@ -4,7 +4,7 @@ package adventure.game.entities;
 import adventure.server.AdventureServer;
 import adventure.types.RenderPriority;
 
-public class TimedEntity extends Entity
+public class TimedEntity extends TileImageEntity
 {
 	private long entityTime;
 

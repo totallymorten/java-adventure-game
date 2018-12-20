@@ -24,9 +24,11 @@ import adventure.game.GameView;
 import adventure.game.LoginScreen;
 import adventure.game.Renderable;
 import adventure.game.TileMap;
+import adventure.game.ViewRenderable;
 import adventure.game.entities.Actor.ActorState;
 import adventure.game.entities.Animating;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.GraveStone;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Player;
@@ -363,7 +365,7 @@ public class AdventureGame extends JavaEngine
 		if (AdventureGame.DEBUG_MODE)
 		{
 			boolean found = false;
-			for (Entity e : Game.g.entities.values())
+			for (BaseEntity e : Game.g.entities.values())
 			{
 				found = false;
 				
@@ -398,7 +400,7 @@ public class AdventureGame extends JavaEngine
 	private void showExitStats()
 	{
 		Logger.info("Entities in entity list:");
-		for (Entity e : Game.g.entities.values())
+		for (BaseEntity e : Game.g.entities.values())
 		{
 			Logger.info(e.toString());
 		}
@@ -484,9 +486,20 @@ public class AdventureGame extends JavaEngine
 	@Override
 	public void render(Graphics2D g)
 	{
+		
 		for (Renderable r : Game.g.renderables)
 		{
-			r.render(g);
+			if (r instanceof ViewRenderable)
+			{
+				ViewRenderable vr = (ViewRenderable)r;
+				if (Game.g.isVisible(vr))
+				{
+					vr.render(g, Game.g.view);
+				}
+			}
+			else
+				r.render(g);				
+			
 		}
 	}
 

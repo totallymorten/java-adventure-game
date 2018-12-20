@@ -8,7 +8,8 @@ import java.util.List;
 
 import adventure.comm.CommunicationObj;
 import adventure.game.entities.Actor;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.Player;
 import adventure.types.Tiles;
 import tools.ImageTool;
@@ -213,10 +214,10 @@ public class TileMap extends CommunicationObj
 			return newt;			
 		}
 		
-		List<Entity> entities = Game.g.getEntities();
+		List<BaseEntity> entities = Game.g.getEntities();
 		
 		// checking actor collision
-		for (Entity e : entities)
+		for (BaseEntity e : entities)
 		{
 			if (e instanceof Actor)
 			{

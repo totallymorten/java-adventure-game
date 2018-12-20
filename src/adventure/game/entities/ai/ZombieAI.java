@@ -8,7 +8,8 @@ import adventure.game.Game;
 import adventure.game.TileMap;
 import adventure.game.World;
 import adventure.game.entities.Actor;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Player;
 import adventure.game.entities.Zombie;
@@ -244,11 +245,11 @@ public class ZombieAI extends AI
 	{
 		
 		// now do something
-		List<Entity> entities = Game.g.getEntities();
+		List<BaseEntity> entities = Game.g.getEntities();
 		
 		Logger.trace(className + ".searchForTarget(): checking ["+entities.size()+"] players");
 
-		for (Entity e : entities)
+		for (BaseEntity e : entities)
 		{
 			if (e instanceof Actor && handleActor((Actor)e))
 				break;

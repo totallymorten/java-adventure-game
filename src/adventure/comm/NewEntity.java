@@ -1,6 +1,6 @@
 package adventure.comm;
 
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
 
 public class NewEntity extends CommandObj
 {
@@ -9,10 +9,10 @@ public class NewEntity extends CommandObj
 	 */
 	private static final long serialVersionUID = 8007672766684318938L;
 	
-	public Entity entity;
+	public BaseEntity entity;
 	
 	
-	public NewEntity(Entity e)
+	public NewEntity(BaseEntity e)
 	{
 		this.entity = e;
 	}

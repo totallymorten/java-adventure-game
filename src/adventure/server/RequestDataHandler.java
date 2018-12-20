@@ -9,7 +9,8 @@ import adventure.comm.RequestData;
 import adventure.comm.UpdateWorld;
 import adventure.game.Game;
 import adventure.game.World;
-import adventure.game.entities.Entity;
+import adventure.game.entities.TileImageEntity;
+import adventure.game.entities.BaseEntity;
 import adventure.game.entities.Player;
 import adventure.types.RequestDataType;
 import tools.Logger;
@@ -62,9 +63,9 @@ public class RequestDataHandler extends CommandHandler
 		}
 		else if (rd.dataType == RequestDataType.ALL_ENTITIES)
 		{
-			List<Entity> entities = Game.g.getEntities();
+			List<BaseEntity> entities = Game.g.getEntities();
 			
-			for (Entity e : entities)
+			for (BaseEntity e : entities)
 			{
 				AdventureServer.addServerMessage(new ServerMessage(clientId, new NewEntity(e)));
 			}
@@ -72,7 +73,7 @@ public class RequestDataHandler extends CommandHandler
 		else if (rd.dataType == RequestDataType.ENTITY)
 		{
 			int entityId = Integer.parseInt(rd.requestInfo);
-			Entity e = Game.g.getEntity(entityId);
+			BaseEntity e = Game.g.getEntity(entityId);
 			
 			if (e == null)
 				Logger.error(className + "handleCommand(ENTITY): entity with id: ["+entityId+"] not found!!");

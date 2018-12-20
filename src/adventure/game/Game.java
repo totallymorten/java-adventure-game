@@ -11,9 +11,11 @@ import java.util.Random;
 import javax.sound.sampled.Clip;
 
 import adventure.engine.AdventureGame;
+import adventure.game.animations.BloodAnimation;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Animating;
-import adventure.game.entities.Entity;
+import adventure.game.entities.BaseEntity;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Player;
 import adventure.game.entities.Updateable;
@@ -60,7 +62,7 @@ public class Game
 	public ArrayList<Updateable> removeUpdateables = new ArrayList<Updateable>();
 	public ArrayList<Updateable> addUpdateables = new ArrayList<Updateable>();
 	
-	public HashMap<Integer, Entity> entities = new HashMap<Integer, Entity>();
+	public HashMap<Integer, BaseEntity> entities = new HashMap<Integer, BaseEntity>();
 	
 	public HashMap<Sounds, Clip> sounds = new HashMap<Sounds, Clip>();
 
@@ -202,7 +204,7 @@ public class Game
 		soundPlayer.start();
 	}
 	
-	public boolean isVisible(Entity e)
+	public boolean isVisible(ViewRenderable e)
 	{
 		int diffx = e.getRealPoint().x - view.getXInt();
 		int diffy = e.getRealPoint().y - view.getYInt();
@@ -212,7 +214,7 @@ public class Game
 		|| diffy < -g.map.tileHeight || diffy > (screen.height))
 		return false;
 
-		if (TileMap.selectLightLevel(e.tileX, e.tileY) <= 0.0f)
+		if (TileMap.selectLightLevel(e.getTilePoint().x, e.getTilePoint().y) <= 0.0f)
 			return false;
 
 		return true;
@@ -284,7 +286,7 @@ public class Game
 		removePlayers.clear();
 	}
 	
-	public synchronized void removeEntity(Entity e)
+	public synchronized void removeEntity(TileImageEntity e)
 	{
 		removeEntity(e.entityId);
 	}
@@ -293,7 +295,7 @@ public class Game
 	{
 		Logger.trace(LOG_PREFIX + ".removeEntity(): removing entity [entityId:"+entityId+"] from entities map");
 
-		Entity e = entities.remove(new Integer(entityId));
+		BaseEntity e = entities.remove(new Integer(entityId));
 		
 		
 		if (e == null)
@@ -305,29 +307,36 @@ public class Game
 		
 		Logger.trace(LOG_PREFIX + ".removeEntity(): adding entity [entityId:"+entityId+"] to remove arrays");
 		
-		scheduleRemoveRenderable(e);
-		scheduleRemoveUpdateable(e);
+		if (e instanceof Renderable)
+			scheduleRemoveRenderable(e);
+		
+		if (e instanceof Updateable)
+			scheduleRemoveUpdateable((Updateable) e);
 		AStarService.threads.remove(e);
 	}
 
-	public synchronized void addEntity(Entity e)
+	public synchronized void addEntity(BaseEntity e)
 	{
 		if (entities.get(e.entityId) != null)
 			Logger.error("Game.addEntity(): Entity with id ["+e.entityId+"] already exists");
 		else
 		{
-			addUpdateable(e);
+			if (e instanceof Updateable)
+				addUpdateable((Updateable) e);
 			
 			entities.put(new Integer(e.entityId), e);
 		}
 	}
 	
-	public synchronized void client_addEntity(Entity e)
+	public synchronized void client_addEntity(BaseEntity e)
 	{
 		if (entities.get(e.entityId) != null)
 			Logger.error("Game.client_addEntity(): Entity with id ["+e.entityId+"] already exists");
 		else
 		{
+//			if (e instanceof BloodAnimation)
+//				System.out.println("");
+			
 			addRenderable(e);
 			
 			if (e instanceof Animating)
@@ -336,16 +345,16 @@ public class Game
 		}
 	}
 
-	public synchronized Entity getEntity(int entityId)
+	public synchronized BaseEntity getEntity(int entityId)
 	{
 		return entities.get(new Integer(entityId));
 	}
 	
-	public synchronized List<Entity> getEntities()
+	public synchronized List<BaseEntity> getEntities()
 	{
-		ArrayList<Entity> entityList = new ArrayList<Entity>();
+		ArrayList<BaseEntity> entityList = new ArrayList<BaseEntity>();
 		
-		for (Entity e : entities.values())
+		for (BaseEntity e : entities.values())
 		{
 			entityList.add(e);
 		}
@@ -361,7 +370,7 @@ public class Game
 
 	public void createZombie(int i, int j)
 	{
-		Entity e = new Zombie(i,j,null);
+		TileImageEntity e = new Zombie(i,j,null);
 		addEntity(e);
 		AdventureServer.msgClientNewEntity(e);
 	}
