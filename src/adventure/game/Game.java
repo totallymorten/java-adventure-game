@@ -219,7 +219,23 @@ public class Game
 
 		return true;
 	}
-	
+
+	public boolean isTileVisible(int tilex, int tiley)
+	{
+		int diffx = tilex*Game.g.tileWidth - view.getXInt();
+		int diffy = tiley*Game.g.tileHeight - view.getYInt();
+		
+		// check for view visibility (else, don't render)
+		if (diffx < -g.map.tileWidth || diffx > (screen.width)
+		|| diffy < -g.map.tileHeight || diffy > (screen.height))
+		return false;
+
+		if (TileMap.selectLightLevel(tilex, tiley) <= 0.0f)
+			return false;
+
+		return true;
+	}
+
 	public synchronized void scheduleRemoveRenderable(Renderable r)
 	{
 		removeRenderables.add(r);

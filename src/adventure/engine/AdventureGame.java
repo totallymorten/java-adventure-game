@@ -17,6 +17,7 @@ import javax.sound.sampled.DataLine;
 import adventure.client.AdventureClient;
 import adventure.client.ServerMsgHandler;
 import adventure.comm.CommunicationObj;
+import adventure.game.DarknessTileMask;
 import adventure.game.Entities;
 import adventure.game.Game;
 import adventure.game.GameScreen;
@@ -272,6 +273,10 @@ public class AdventureGame extends JavaEngine
 		
 		
 		Game.g.addRenderable(view);
+		
+		
+		DarknessTileMask darkness = new DarknessTileMask();
+		Game.g.addRenderable(darkness);
 		
 		Game.g.client_addEntity(man);
 		

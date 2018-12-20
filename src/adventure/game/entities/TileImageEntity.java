@@ -1,5 +1,6 @@
 package adventure.game.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -83,16 +84,22 @@ public class TileImageEntity extends BaseEntity implements Updateable
 		
 		float lightLevel = TileMap.selectLightLevel(tileX, tileY);
 		
-		Image bufferedLightLevelImage = this.bufferedLightLevelImages.get(lightLevel);
+		lightLevel = Math.abs(1 - lightLevel);
 		
-		if (bufferedLightLevelImage == null)
-		{
-			bufferedLightLevelImage = ImageTool.calCulateNightImage(lightLevel, img);
-			this.bufferedLightLevelImages.put(new Float(lightLevel), bufferedLightLevelImage);
-		}
+//		Image bufferedLightLevelImage = this.bufferedLightLevelImages.get(lightLevel);
+//		
+//		if (bufferedLightLevelImage == null)
+//		{
+//			bufferedLightLevelImage = ImageTool.calCulateNightImage(lightLevel, img);
+//			this.bufferedLightLevelImages.put(new Float(lightLevel), bufferedLightLevelImage);
+//		}
 		
 		Point viewpos = getViewRenderPoint(view);
-		g.drawImage(bufferedLightLevelImage,viewpos.x,viewpos.y,imgW,imgH, null);
+		g.drawImage(img,viewpos.x,viewpos.y,imgW,imgH, null);
+		
+//		g.setColor(new Color(0,0,0,Math.round(lightLevel * 255)));
+//		g.fillRect(viewpos.x, viewpos.y, imgW, imgH);
+
 		
 	}
 

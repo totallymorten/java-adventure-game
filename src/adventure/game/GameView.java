@@ -1,5 +1,6 @@
 package adventure.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -11,7 +12,7 @@ import tools.Vector2D;
 public class GameView implements Updateable, Renderable
 {
 	private double x,y;
-	private GameScreen screen;
+	public GameScreen screen;
 	private TileMap map;
 	
 	public GameView(int x, int y, GameScreen screen, TileMap map)
@@ -200,11 +201,20 @@ public class GameView implements Updateable, Renderable
 			{
 				//img = (Game.g.images.get(tiles[h][w]))[(int)(TileMap.selectLightLevel(w, h) * 10)];
 				
-				img = map.getTileImage(Game.g.map.tiles[h][w], TileMap.selectLightLevel(w, h));
+				float lightLevel = TileMap.selectLightLevel(w, h);
+				
+				if (lightLevel <= 0)
+				{
+					viewW++;
+					continue; // don't render totally dark tiles. Will be covered by darkness					
+				}
+				
+				img = map.getTileImage(Game.g.map.tiles[h][w], 1);
 				
 				g.drawImage(img,viewW*Game.g.map.tileWidth - offsetX,viewH*Game.g.map.tileHeight - offsetY,Game.g.map.tileWidth,Game.g.map.tileHeight, null);
+
 				viewW++;
-				
+
 			}
 			
 			viewH++;
