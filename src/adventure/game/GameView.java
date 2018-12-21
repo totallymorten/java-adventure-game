@@ -203,11 +203,11 @@ public class GameView implements Updateable, Renderable
 				
 				float lightLevel = TileMap.selectLightLevel(w, h);
 				
-				if (lightLevel <= 0)
-				{
-					viewW++;
-					continue; // don't render totally dark tiles. Will be covered by darkness					
-				}
+//				if (lightLevel <= 0)
+//				{
+//					viewW++;
+//					continue; // don't render totally dark tiles. Will be covered by darkness					
+//				}
 				
 				img = map.getTileImage(Game.g.map.tiles[h][w], 1);
 				

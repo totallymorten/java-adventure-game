@@ -9,8 +9,20 @@ import adventure.types.RenderPriority;
 
 public class DarknessTileMask implements Renderable {
 
+	
+	private float[][] darknessMap = new float[Game.g.map.mapH][Game.g.map.mapW];
+	
 	public DarknessTileMask() {
-		// TODO Auto-generated constructor stub
+		
+		// initializing float map
+		
+		for (int h = 0; h < Game.g.map.mapH; h++)
+		{
+			for (int w = 0; w < Game.g.map.mapW; w++)
+			{
+				darknessMap[h][w] = 0.0f;
+			}
+		}
 	}
 
 	@Override
@@ -20,18 +32,12 @@ public class DarknessTileMask implements Renderable {
 
 	@Override
 	public void render(Graphics g) {
-		Image img; 
 
 		
 		int viewH = 0, viewW = 0;
 		int tilex = Game.g.view.getXInt() < Game.g.tileWidth ? 0 : (int)Math.floor(Game.g.view.getXInt() / Game.g.tileWidth) - 1;
 		int tiley = Game.g.view.getYInt() < Game.g.tileHeight ? 0 : (int)Math.floor(Game.g.view.getYInt() / Game.g.tileHeight) - 1;
 		
-//		if ((tilex + screen.tilesx) >= map.mapW)
-//			tilex--;
-//		
-//		if ((tiley + screen.tilesy) >= map.mapH)
-//			tiley--;
 		
 		int offsetX = Game.g.view.getXInt() - tilex*Game.g.tileWidth;
 		int offsetY = Game.g.view.getYInt() - tiley*Game.g.tileHeight;
@@ -46,10 +52,20 @@ public class DarknessTileMask implements Renderable {
 				
 				float lightLevel = TileMap.selectLightLevel(w, h);
 				
-				lightLevel = Math.abs(1 - lightLevel);
+				float targetDarknessLevel = Math.abs(1 - lightLevel);
 				
+				float darknessDiff = targetDarknessLevel - darknessMap[h][w];
 				
-				g.setColor(new Color(0,0,0,Math.round(lightLevel * 255)));
+				if (Math.abs(darknessDiff) < 0.01f)
+				{
+					darknessMap[h][w] = targetDarknessLevel;
+				}
+				else
+				{
+					darknessMap[h][w] += (0.003f * Math.signum(darknessDiff));
+				}
+				
+				g.setColor(new Color(0,0,0,darknessMap[h][w]));
 				g.fillRect(viewW*Game.g.map.tileWidth - offsetX, viewH*Game.g.map.tileHeight - offsetY, Game.g.map.tileWidth, Game.g.map.tileHeight);
 
 				
