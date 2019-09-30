@@ -72,7 +72,29 @@ public class LoginScreen implements Renderable
 				activeBoxY = yUsername;
 			}
 		}
-		
+
+		else if (event.getKeyCode() == KeyEvent.VK_UP)
+		{
+			if (state == LoginState.USERNAME)
+			{
+				activeText = port;
+				state = LoginState.PORT;
+				activeBoxY = yPort;
+			}
+			else if (state == LoginState.SERVER)
+			{
+				activeText = username;
+				state = LoginState.USERNAME;
+				activeBoxY = yUsername;
+			}
+			else if (state == LoginState.PORT)
+			{
+				activeText = server;
+				state = LoginState.SERVER;
+				activeBoxY = yServer;
+			}
+		}
+
 		else if ((event.getKeyCode() != KeyEvent.VK_SHIFT) && (event.getKeyCode() != KeyEvent.VK_ESCAPE))
 		{
 			activeText.append(event.getKeyChar());
