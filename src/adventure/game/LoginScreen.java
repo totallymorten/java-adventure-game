@@ -10,6 +10,19 @@ import adventure.types.RenderPriority;
 
 public class LoginScreen implements Renderable
 {
+	public LoginScreen()
+	{
+		
+	}
+	
+	
+	public LoginScreen(String username, String server, String port)
+	{
+		this.username = new StringBuffer(username);
+		this.server = new StringBuffer(server);
+		this.port = new StringBuffer(port);
+	}
+	
 	RenderPriority renderPriority = RenderPriority.FOREGROUND;
 
 	@Override
@@ -33,7 +46,7 @@ public class LoginScreen implements Renderable
 	int activeBoxY = yUsername;
 	int activeBorderSize = 2;
 	
-	public StringBuffer username = new StringBuffer();
+	public StringBuffer username = new StringBuffer("Player 1");
 	public StringBuffer server = new StringBuffer("localhost");
 	public StringBuffer port = new StringBuffer("5555");
 	

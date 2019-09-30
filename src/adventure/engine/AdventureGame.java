@@ -108,7 +108,7 @@ public class AdventureGame extends JavaEngine
 		int fps = DEFAULT_FPS;
 	
 		if (args == null || args.length == 0)
-			args = new String[] {"cruiser", "localhost", "5555"};
+			args = new String[] {"Player 1", "localhost", "5555"};
 		
 		(new Thread(new AdventureGame(fps, args[0], args[1], args[2]))).start();
 	}
@@ -169,7 +169,7 @@ public class AdventureGame extends JavaEngine
 	
 	private void initLoginScreen()
 	{
-		loginScreen = new LoginScreen();
+		loginScreen = new LoginScreen(username, serverAddress, serverPort+"");
 		Game.g.addRenderable(loginScreen);		
 	}
 	
