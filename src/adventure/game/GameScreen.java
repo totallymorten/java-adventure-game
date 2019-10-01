@@ -11,7 +11,7 @@ import adventure.types.RenderPriority;
 
 public class GameScreen implements Renderable
 {
-	RenderPriority renderPriority = RenderPriority.FOREGROUND;
+	RenderPriority renderPriority = RenderPriority.UI;
 	public int width,height;
 	public int tilesx, tilesy;
 	private ArrayList<Renderable> renderables = new ArrayList<Renderable>();

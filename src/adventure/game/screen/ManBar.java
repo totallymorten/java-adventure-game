@@ -12,7 +12,7 @@ import adventure.types.RenderPriority;
 
 public abstract class ManBar implements Renderable
 {
-	protected RenderPriority renderPriority = RenderPriority.FOREGROUND;
+	protected RenderPriority renderPriority = RenderPriority.UI;
 	GameScreen screen;
 	Player man;
 	public String title;
