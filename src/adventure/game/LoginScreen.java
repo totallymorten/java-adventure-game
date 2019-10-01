@@ -10,6 +10,19 @@ import adventure.types.RenderPriority;
 
 public class LoginScreen implements Renderable
 {
+	public LoginScreen()
+	{
+		
+	}
+	
+	
+	public LoginScreen(String username, String server, String port)
+	{
+		this.username = new StringBuffer(username);
+		this.server = new StringBuffer(server);
+		this.port = new StringBuffer(port);
+	}
+	
 	RenderPriority renderPriority = RenderPriority.FOREGROUND;
 
 	@Override
@@ -33,7 +46,7 @@ public class LoginScreen implements Renderable
 	int activeBoxY = yUsername;
 	int activeBorderSize = 2;
 	
-	public StringBuffer username = new StringBuffer();
+	public StringBuffer username = new StringBuffer("Player 1");
 	public StringBuffer server = new StringBuffer("localhost");
 	public StringBuffer port = new StringBuffer("5555");
 	
@@ -72,7 +85,29 @@ public class LoginScreen implements Renderable
 				activeBoxY = yUsername;
 			}
 		}
-		
+
+		else if (event.getKeyCode() == KeyEvent.VK_UP)
+		{
+			if (state == LoginState.USERNAME)
+			{
+				activeText = port;
+				state = LoginState.PORT;
+				activeBoxY = yPort;
+			}
+			else if (state == LoginState.SERVER)
+			{
+				activeText = username;
+				state = LoginState.USERNAME;
+				activeBoxY = yUsername;
+			}
+			else if (state == LoginState.PORT)
+			{
+				activeText = server;
+				state = LoginState.SERVER;
+				activeBoxY = yServer;
+			}
+		}
+
 		else if ((event.getKeyCode() != KeyEvent.VK_SHIFT) && (event.getKeyCode() != KeyEvent.VK_ESCAPE))
 		{
 			activeText.append(event.getKeyChar());
