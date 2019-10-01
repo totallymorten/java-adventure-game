@@ -42,6 +42,17 @@ public class DarknessTileMask implements Renderable {
 		int offsetX = Game.g.view.getXInt() - tilex*Game.g.tileWidth;
 		int offsetY = Game.g.view.getYInt() - tiley*Game.g.tileHeight;
 		
+		
+		// handling world lighting
+		float worldTargetDarknessLevel = Math.abs(1 - World.world.lightLevel);
+		float worldDarknessDiff = worldTargetDarknessLevel - World.world.currentDarknessLevel;
+		
+		if (worldDarknessDiff < 0.01f)
+			World.world.currentDarknessLevel = worldTargetDarknessLevel;
+		else
+			World.world.currentDarknessLevel += (0.003f * Math.signum(worldDarknessDiff));
+			
+		
 		for (int h = tiley; (h <= (tiley + Game.g.view.screen.tilesy)) && (h < Game.g.map.mapH); h++)
 		{
 			viewW = 0;
@@ -54,21 +65,29 @@ public class DarknessTileMask implements Renderable {
 				
 				float targetDarknessLevel = Math.abs(1 - lightLevel);
 				
-				float darknessDiff = targetDarknessLevel - darknessMap[h][w];
-				
-				if (Math.abs(darknessDiff) < 0.01f)
+				if (targetDarknessLevel == worldTargetDarknessLevel)
 				{
-					darknessMap[h][w] = targetDarknessLevel;
+					darknessMap[h][w] = worldTargetDarknessLevel;					
 				}
 				else
 				{
-					darknessMap[h][w] += (0.003f * Math.signum(darknessDiff));
+					float darknessDiff = targetDarknessLevel - darknessMap[h][w];
+					
+					if (Math.abs(darknessDiff) < 0.01f)
+					{
+						darknessMap[h][w] = targetDarknessLevel;
+					}
+					else
+					{
+						darknessMap[h][w] += (0.003f * Math.signum(darknessDiff));
+					}
+					
+					
 				}
-				
+
 				g.setColor(new Color(0,0,0,darknessMap[h][w]));
 				g.fillRect(viewW*Game.g.map.tileWidth - offsetX, viewH*Game.g.map.tileHeight - offsetY, Game.g.map.tileWidth, Game.g.map.tileHeight);
 
-				
 				viewW++;
 				
 			}

@@ -10,6 +10,7 @@ import tools.Logger;
 public class World implements Updateable
 {
 	public float lightLevel = AdventureProperties.getFloat("world_lightLevel");
+	public float currentDarknessLevel = 0.0f;
 	
 	public static World world = new World();
 
