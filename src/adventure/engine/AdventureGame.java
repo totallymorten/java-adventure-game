@@ -67,6 +67,10 @@ public class AdventureGame extends JavaEngine
 	public static final int WIDTH = AdventureProperties.getInt("screen_width");
 	public static final int HEIGHT = AdventureProperties.getInt("screen_height");
 	
+	static final int SCREEN_X_POSITION = AdventureProperties.getInt("screen_x_offset");
+	static final int SCREEN_Y_POSITION = AdventureProperties.getInt("screen_y_offset");
+
+	
 	private AdventureClient client = AdventureClient.c; 
 	
 	int grassW,grassH;
@@ -82,7 +86,7 @@ public class AdventureGame extends JavaEngine
 	
 	public AdventureGame(double fps, String username, String serverAddress, String serverPort)
 	{
-		super(WIDTH, HEIGHT, fps);
+		super(SCREEN_X_POSITION, SCREEN_Y_POSITION, WIDTH, HEIGHT, fps);
 		this.username = username;
 		this.serverAddress = serverAddress;
 		this.serverPort = Integer.parseInt(serverPort);
