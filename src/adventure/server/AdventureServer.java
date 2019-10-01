@@ -28,9 +28,7 @@ import tools.Logger;
 
 
 public class AdventureServer
-{
-	public static final String versionString = "An Adventure Game Server v0.3.0";
-	
+{	
 	private SocketServer sockServer;
 	
 	private static ArrayList<ServerMessage> serverMessageQueue = new ArrayList<ServerMessage>();
@@ -218,7 +216,7 @@ public class AdventureServer
 	
 	public void runServer()
 	{
-		Logger.info("Starting " + AdventureServer.versionString);
+		Logger.info("Starting " + Game.g.version + " Server ...");
 		gameThread = new GameThread();
 		gameThread.start();
 		sockServer = new SocketServer(5555);
