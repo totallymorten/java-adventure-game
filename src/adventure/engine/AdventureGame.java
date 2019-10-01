@@ -29,7 +29,6 @@ import adventure.game.ViewRenderable;
 import adventure.game.entities.Actor.ActorState;
 import adventure.game.entities.Animating;
 import adventure.game.entities.BaseEntity;
-import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.GraveStone;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Player;

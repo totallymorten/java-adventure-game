@@ -11,13 +11,12 @@ import java.util.Random;
 import javax.sound.sampled.Clip;
 
 import adventure.engine.AdventureGame;
-import adventure.game.animations.BloodAnimation;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Animating;
 import adventure.game.entities.BaseEntity;
-import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Player;
+import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.Updateable;
 import adventure.game.entities.Zombie;
 import adventure.game.entities.ai.astar.AStarService;

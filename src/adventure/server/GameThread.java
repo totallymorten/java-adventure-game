@@ -7,7 +7,6 @@ import adventure.game.TileMap;
 import adventure.game.World;
 import adventure.game.entities.GraveStone;
 import adventure.game.entities.Updateable;
-import adventure.game.entities.Zombie;
 import adventure.game.entities.ai.astar.AStarService;
 import adventure.properties.AdventureProperties;
 import tools.Logger;

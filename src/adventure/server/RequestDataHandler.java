@@ -9,7 +9,6 @@ import adventure.comm.RequestData;
 import adventure.comm.UpdateWorld;
 import adventure.game.Game;
 import adventure.game.World;
-import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.BaseEntity;
 import adventure.game.entities.Player;
 import adventure.types.RequestDataType;

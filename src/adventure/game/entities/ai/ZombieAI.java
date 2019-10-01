@@ -9,7 +9,6 @@ import adventure.game.TileMap;
 import adventure.game.World;
 import adventure.game.entities.Actor;
 import adventure.game.entities.BaseEntity;
-import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.MasterZombie;
 import adventure.game.entities.Player;
 import adventure.game.entities.Zombie;

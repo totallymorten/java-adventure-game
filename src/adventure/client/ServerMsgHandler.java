@@ -14,7 +14,6 @@ import adventure.game.World;
 import adventure.game.entities.Actor;
 import adventure.game.entities.Actor.ActorState;
 import adventure.game.entities.BaseEntity;
-import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.HealthEntity;
 import adventure.types.ActorStat;
 import tools.Logger;

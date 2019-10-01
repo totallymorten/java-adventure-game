@@ -1,18 +1,14 @@
 package adventure.game.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.HashMap;
 
-import adventure.comm.CommunicationObj;
 import adventure.game.Game;
 import adventure.game.GameView;
-import adventure.game.Renderable;
 import adventure.game.TileMap;
 import adventure.types.RenderPriority;
-import tools.ImageTool;
 
 
 

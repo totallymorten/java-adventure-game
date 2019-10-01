@@ -7,10 +7,8 @@ import java.awt.Point;
 
 import adventure.game.Game;
 import adventure.game.GameView;
-import adventure.game.Renderable;
 import adventure.game.entities.Animating;
 import adventure.game.entities.BaseEntity;
-import adventure.server.AdventureServer;
 import adventure.types.Direction;
 import adventure.types.RenderPriority;
 import engine.exception.JavaEngineException;

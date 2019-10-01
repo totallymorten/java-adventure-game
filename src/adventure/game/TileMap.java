@@ -9,7 +9,6 @@ import java.util.List;
 import adventure.comm.CommunicationObj;
 import adventure.game.entities.Actor;
 import adventure.game.entities.BaseEntity;
-import adventure.game.entities.TileImageEntity;
 import adventure.game.entities.Player;
 import adventure.types.Tiles;
 import tools.ImageTool;

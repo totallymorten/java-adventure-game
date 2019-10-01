@@ -1,7 +1,6 @@
 package adventure.game.entities;
 
 
-import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
