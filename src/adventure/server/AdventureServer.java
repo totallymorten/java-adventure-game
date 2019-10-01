@@ -125,7 +125,7 @@ public class AdventureServer
 
 	public static synchronized void scheduleRemoveEntity(TileImageEntity e)
 	{
-		Logger.info(LOG_PREFIX + "removeEntity(): removing entity: " + e);
+		Logger.trace(LOG_PREFIX + "scheduleRemoveEntity(): removing entity: " + e);
 		Game.g.removeEntity(e);
 		addServerMessage(new ServerMessage(ServerMessage.ALL_CLIENTS, new RemoveEntity(e.entityId)));
 	}
@@ -196,7 +196,7 @@ public class AdventureServer
 		Object collidee;
 		
 		Player player = (Player) Game.g.getEntity(entityId);
-		Logger.info("AdventureServer.handlePlayerMove(): handling move ["+dir+"]. pos ["+player.getTilePoint()+"]");
+		Logger.trace("AdventureServer.handlePlayerMove(): handling move ["+dir+"]. pos ["+player.getTilePoint()+"]");
 		if ((collidee = player.move(dir)) != null)
 		{
 			// handle tile collision
@@ -212,7 +212,7 @@ public class AdventureServer
 				player.attack(target);
 			}
 		}
-		Logger.info("AdventureServer.handlePlayerMove(): moved to pos ["+player.getTilePoint()+"]");
+		Logger.trace("AdventureServer.handlePlayerMove(): moved to pos ["+player.getTilePoint()+"]");
 	}
 
 	

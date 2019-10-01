@@ -123,11 +123,11 @@ public class GameThread extends Thread
 		}
 
 		// DEBUG enemies
-		for (int i = 0; i < 2; i++)
-		{
-			Zombie z = new Zombie(i, 5, null);
-			Game.g.addEntity(z);			
-		}
+//		for (int i = 0; i < 2; i++)
+//		{
+//			Zombie z = new Zombie(i, 5, null);
+//			Game.g.addEntity(z);			
+//		}
 		
 //		for (int i = 0; i < 4; i++)
 //		{
